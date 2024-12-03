@@ -96,3 +96,12 @@ export const authenticators = pgTable(
     }),
   })
 );
+
+export const room = pgTable("room", {
+  userId: text("userId")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  name: text("name").notNull(),
+  language: text("language").notNull(),
+  githubRepo: text("githubRepo")
+});
