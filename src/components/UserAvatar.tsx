@@ -1,22 +1,31 @@
+import { User } from "next-auth";
 import React from "react";
-import { auth } from "../../auth";
+import { Avatar, AvatarFallback } from "./ui/avatar";
 import Image from "next/image";
 
-const UserAvatar = async () => {
-  const session = await auth();
-  const user = session?.user;
-  
+type Props = {
+  user: Pick<User, "name" | "image">;
+};
+
+const UserAvatar = ({ user }: Props) => {
   return (
-    <div className="flex items-center gap-1">
-      <p>{user?.name}</p>
-      <Image
-        src={user?.image!}
-        alt={`${user?.name} profile-image`}
-        height={38}
-        width={38}
-        className="rounded-full"
-      />
-    </div>
+    <Avatar>
+      {user.image ? (
+        <div className="relative w-full h-full aspect-square">
+          <Image
+            src={user.image}
+            alt="User profile"
+            height={40}
+            width={40}
+            referrerPolicy="no-referrer"
+          />
+        </div>
+      ) : (
+        <AvatarFallback>
+          <span className="sr-only">{user?.name}</span>
+        </AvatarFallback>
+      )}
+    </Avatar>
   );
 };
 
