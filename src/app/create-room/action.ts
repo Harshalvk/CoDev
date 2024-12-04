@@ -4,7 +4,7 @@ import { db } from "@/db";
 import { Room, room } from "@/db/schema";
 import { auth } from "../../../auth";
 
-export async function createRoomAction(roomData: Omit<Room, "userId">) {
+export async function createRoomAction(roomData: Omit<Room, "id" | "userId">) {
   const session = await auth();
 
   if (!session) {
