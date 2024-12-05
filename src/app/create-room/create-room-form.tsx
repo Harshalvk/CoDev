@@ -39,7 +39,7 @@ export const CreateRoomForm = () => {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     await createRoomAction(values);
-    router.push("/")
+    router.push("/");
   }
 
   return (
@@ -52,7 +52,7 @@ export const CreateRoomForm = () => {
             <FormItem>
               <FormLabel>Name</FormLabel>
               <FormControl>
-                <Input placeholder="Ex. Walter" {...field} />
+                <Input placeholder="CoDev is awesome!" {...field} />
               </FormControl>
               <FormDescription>This is your public room name.</FormDescription>
               <FormMessage />
@@ -67,7 +67,10 @@ export const CreateRoomForm = () => {
             <FormItem>
               <FormLabel>Description</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input
+                  {...field}
+                  placeholder="Im working on a side project, come join me."
+                />
               </FormControl>
               <FormDescription>
                 Please describe what you are be coding on
@@ -84,7 +87,7 @@ export const CreateRoomForm = () => {
             <FormItem>
               <FormLabel>GitHub Repo</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input {...field} placeholder="https://github.com/xyz" />
               </FormControl>
               <FormDescription>
                 Please put a link to the project you are working on.
@@ -101,10 +104,11 @@ export const CreateRoomForm = () => {
             <FormItem>
               <FormLabel>Programming Language</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input {...field} placeholder="typescript, nextjs, tailwind" />
               </FormControl>
               <FormDescription>
-                List the primary programming language you are working with.
+                List your programming languages, frameworks, libraries so people
+                can find you.
               </FormDescription>
               <FormMessage />
             </FormItem>
