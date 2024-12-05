@@ -20,7 +20,7 @@ type Props = {
 
 const UserAccountNav = ({ user }: Props) => {
   return (
-    <DropdownMenu>
+    <DropdownMenu modal={false}>
       <DropdownMenuTrigger>
         <UserAvatar user={user} />
       </DropdownMenuTrigger>
