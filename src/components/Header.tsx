@@ -11,20 +11,18 @@ const Header = async () => {
   }
 
   return (
-    <div className="container mx-auto">
-      <div className="mt-4 mx-3 max-w-7xl flex items-center justify-between py-4 px-6 border rounded-full">
-        <div>
-          <span className="text-2xl font-bold tracking-tighter">CoDev</span>
-        </div>
-        <div className="flex gap-2 items-center">
-          <ModeToggle />
-          <div className="flex items-center">
-            {session.user ? (
-              <UserAccountNav user={session.user} />
-            ) : (
-              <SignInButton text="SignIn" />
-            )}
-          </div>
+    <div className="mt-4 flex items-center justify-between py-4 px-6 border rounded-full mx-auto">
+      <div>
+        <span className="text-2xl font-bold tracking-tighter">CoDev</span>
+      </div>
+      <div className="flex gap-2 items-center">
+        <ModeToggle />
+        <div className="flex items-center">
+          {session.user ? (
+            <UserAccountNav user={session.user} />
+          ) : (
+            <SignInButton text="SignIn" />
+          )}
         </div>
       </div>
     </div>
