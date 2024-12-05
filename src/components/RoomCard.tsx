@@ -11,29 +11,13 @@ import type { Room } from "@/db/schema";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import { Github } from "lucide-react";
+import LanguageTag from "./LanguageTag";
 
 type Props = {
   room: Room;
 };
 
-const LanguageTags = ({ languages }: { languages: string[] }) => {
-  return (
-    <div className="flex flex-wrap gap-2">
-      {languages.map((language, index) => (
-        <span
-          key={index}
-          className="bg-neutral-100 dark:bg-neutral-800 border border-black/10 darK:border-white/10 text-xs rounded-full p-2"
-        >
-          {language}
-        </span>
-      ))}
-    </div>
-  );
-};
-
 const RoomCard = ({ room }: Props) => {
-  const languages = room.language.split(" ");
-
   return (
     <Card className="w-full max-w-96 hover:bg-neutral-100 dark:hover:bg-neutral-900 transition flex flex-col justify-evenly">
       <CardHeader>
@@ -42,7 +26,9 @@ const RoomCard = ({ room }: Props) => {
       </CardHeader>
       <CardContent>
         <div className="flex flex-col gap-2">
-          <LanguageTags languages={languages} />
+          {room.language.split(" ").map((lang, index) => (
+            <LanguageTag language={lang} />
+          ))}
           {room.githubRepo && (
             <Link
               href={room.githubRepo}
