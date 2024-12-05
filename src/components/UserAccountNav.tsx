@@ -18,7 +18,7 @@ type Props = {
   user: Pick<User, "name" | "email" | "image">;
 };
 
-const UserAccountNav = async ({ user }: Props) => {
+const UserAccountNav = ({ user }: Props) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
