@@ -26,9 +26,7 @@ const RoomCard = ({ room }: Props) => {
       </CardHeader>
       <CardContent>
         <div className="flex flex-col gap-2">
-          {room.language.split(" ").map((lang, index) => (
-            <LanguageTag language={lang} />
-          ))}
+          {room.language && <LanguageTag languages={room.language} />}
           {room.githubRepo && (
             <Link
               href={room.githubRepo}
