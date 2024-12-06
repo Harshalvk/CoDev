@@ -41,7 +41,9 @@ const UserAccountNav = ({ user }: Props) => {
         <DropdownMenuItem
           onClick={(e) => {
             e.preventDefault();
-            signOut().catch(console.error);
+            signOut({
+              redirectTo: "/",
+            }).catch(console.error);
           }}
           className="dark:text-red-500 text-red-500 group cursor-pointer"
         >
