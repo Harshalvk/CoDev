@@ -7,15 +7,18 @@ const LanguageTag = ({ languages }: { languages: string }) => {
   return (
     <div>
       <div className="flex flex-wrap gap-2">
-        {languages.split(" ").map((lang, index) => (
-          <Badge
-            variant={"secondary"}
-            className="border dark:border-white/10 border-black/10"
-            key={index}
-          >
-            {lang}
-          </Badge>
-        ))}
+        {languages
+          .split(/,\s*|\s+/)
+          .filter((lang) => lang.trim() !== "")
+          .map((lang, index) => (
+            <Badge
+              variant={"secondary"}
+              className="border dark:border-white/10 border-black/10"
+              key={index}
+            >
+              {lang}
+            </Badge>
+          ))}
       </div>
     </div>
   );
