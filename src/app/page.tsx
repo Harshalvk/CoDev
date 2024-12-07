@@ -5,9 +5,17 @@ import RoomCard from "@/components/RoomCard";
 import { getRooms } from "@/data-access/rooms";
 import { auth } from "../../auth";
 import { redirect } from "next/navigation";
+import { SearchBar } from "@/components/SearchBar";
 
-export default async function Home() {
-  const rooms = await getRooms();
+type Props = {
+  searchParams: {
+    search: string;
+  };
+};
+
+export default async function Home({ searchParams }: Props) {
+  const { search } = await searchParams;
+  const rooms = await getRooms(search);
   const session = await auth();
 
   if (!session?.user) {
@@ -24,6 +32,9 @@ export default async function Home() {
             <Button asChild>
               <Link href={"/create-room"}>Create Room</Link>
             </Button>
+          </div>
+          <div className="my-4">
+            <SearchBar />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center gap-2 mt-5">
             {rooms.map((room) => (
