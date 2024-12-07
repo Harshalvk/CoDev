@@ -1,7 +1,8 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { Badge } from "./ui/badge";
+import { Badge, badgeVariants } from "./ui/badge";
+import { cn } from "@/lib/utils";
 
 const Tags = ({ tags }: { tags: string }) => {
   const router = useRouter();
@@ -15,14 +16,16 @@ const Tags = ({ tags }: { tags: string }) => {
           .split(/,\s*|\s+/)
           .filter((tag) => tag.trim() !== "")
           .map((tag, index) => (
-            <Badge
+            <button
               onClick={() => router.push(`/?search=${tag}`)}
-              variant={"secondary"}
-              className="border dark:border-white/10 border-black/10 capitalize cursor-pointer"
               key={index}
+              className={cn(
+                badgeVariants(),
+                "dark:bg-neutral-800  dark:text-white focus:outline-none"
+              )}
             >
               {tag}
-            </Badge>
+            </button>
           ))}
       </div>
     </div>
