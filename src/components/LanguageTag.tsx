@@ -13,7 +13,7 @@ const LanguageTag = ({ languages }: { languages: string }) => {
           .map((lang, index) => (
             <Badge
               variant={"secondary"}
-              className="border dark:border-white/10 border-black/10"
+              className="border dark:border-white/10 border-black/10 capitalize"
               key={index}
             >
               {lang}
