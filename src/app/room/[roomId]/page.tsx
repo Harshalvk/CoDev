@@ -1,4 +1,4 @@
-import LanguageTag from "@/components/LanguageTag";
+import Tags from "@/components/Tags"
 import { CoDevVideo } from "@/components/VideoPlayer";
 import { getRoom } from "@/data-access/rooms";
 import { Github } from "lucide-react";
@@ -29,7 +29,7 @@ const RoomPage = async ({ params }: Props) => {
           <h1 className="text-lg font-semibold">{room?.name}</h1>
           <p className="text-neutral-500">{room?.description}</p>
           <div className="flex flex-wrap gap-2">
-            {room.language && <LanguageTag languages={room.language} />}
+            {room.tags && <Tags tags={room.tags} />}
           </div>
           {room.githubRepo && (
             <Link

@@ -11,7 +11,7 @@ import type { Room } from "@/db/schema";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import { Github } from "lucide-react";
-import LanguageTag from "./LanguageTag";
+import Tags from "@/components/Tags";
 
 type Props = {
   room: Room;
@@ -26,7 +26,7 @@ const RoomCard = ({ room }: Props) => {
       </CardHeader>
       <CardContent>
         <div className="flex flex-col gap-2">
-          {room.language && <LanguageTag languages={room.language} />}
+          {room.tags && <Tags tags={room.tags} />}
           {room.githubRepo && (
             <Link
               href={room.githubRepo}

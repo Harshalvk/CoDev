@@ -5,7 +5,7 @@ import { unstable_noStore } from "next/cache";
 
 const getRooms = async (search: string | undefined) => {
   unstable_noStore();
-  const where = search ? ilike(room.language, `%${search}%`) : undefined;
+  const where = search ? ilike(room.tags, `%${search}%`) : undefined;
   const rooms = await db.query.room.findMany({
     where,
   });
