@@ -29,9 +29,14 @@ export default async function Home({ searchParams }: Props) {
             <h1 className="text-4xl font-semibold tracking-tighter">
               Find Dev Rooms
             </h1>
-            <Button asChild>
-              <Link href={"/create-room"}>Create Room</Link>
-            </Button>
+            <div className="flex gap-2">
+              <Button asChild>
+                <Link href={"/my-rooms"}>My Rooms</Link>
+              </Button>
+              <Button asChild>
+                <Link href={"/create-room"}>Create Room</Link>
+              </Button>
+            </div>
           </div>
           <div className="my-4">
             <SearchBar />
