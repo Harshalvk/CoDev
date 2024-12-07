@@ -2,6 +2,7 @@ import { db } from "@/db/index";
 import { room } from "@/db/schema";
 import { eq, ilike } from "drizzle-orm";
 import { unstable_noStore } from "next/cache";
+import { auth } from "../../auth";
 
 const getRooms = async (search: string | undefined) => {
   unstable_noStore();
@@ -19,4 +20,15 @@ const getRoom = async (roomId: string) => {
   });
 };
 
-export { getRooms, getRoom };
+const getMyRooms = async () => {
+  unstable_noStore();
+  const session = await auth();
+  if (!session?.user) {
+    return [];
+  }
+  return await db.query.room.findMany({
+    where: eq(room.userId, session.user.id),
+  });
+};
+
+export { getRooms, getRoom, getMyRooms };
