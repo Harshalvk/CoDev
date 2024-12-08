@@ -7,9 +7,6 @@ import Link from "next/link";
 
 const Header = async () => {
   const session = await auth();
-  if (!session?.user) {
-    return null;
-  }
 
   return (
     <div className="mt-4 flex items-center justify-between py-4 px-6 border rounded-full mx-auto">
@@ -21,7 +18,7 @@ const Header = async () => {
       <div className="flex gap-2 items-center">
         <ModeToggle />
         <div className="flex items-center">
-          {session.user ? (
+          {session?.user ? (
             <UserAccountNav user={session.user} />
           ) : (
             <SignInButton text="SignIn" />
