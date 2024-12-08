@@ -23,7 +23,7 @@ export default async function MyRoom() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center gap-2 mt-5">
           {rooms.map((room) => (
-            <RoomCard room={room} key={room.id} />
+            <RoomCard room={room} key={room.id} cardType="roomCard" />
           ))}
         </div>
       </main>

@@ -31,4 +31,8 @@ const getMyRooms = async () => {
   });
 };
 
-export { getRooms, getRoom, getMyRooms };
+const deleteRoom = async (roomId: string) => {
+  await db.delete(room).where(eq(room.id, roomId));
+};
+
+export { getRooms, getRoom, getMyRooms, deleteRoom };
