@@ -11,7 +11,7 @@ const SignInButton = ({ text }: Props) => {
   return (
     <Button
       onClick={() => {
-        signIn("google").catch(console.error);
+        signIn("google", { redirectTo: "/browse" }).catch(console.error);
       }}
     >
       {text}

@@ -57,7 +57,7 @@ export const CoDevVideo = ({ room }: { room: Room }) => {
         <StreamCall call={call}>
           <StreamTheme>
             <SpeakerLayout />
-            <CallControls onLeave={() => router.push("/")} />
+            <CallControls onLeave={() => router.push("/browse")} />
             <CallParticipantsList onClose={() => undefined} />
           </StreamTheme>
         </StreamCall>
