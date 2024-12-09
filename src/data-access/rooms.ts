@@ -2,6 +2,7 @@ import { db } from "@/db/index";
 import { room } from "@/db/schema";
 import { eq, ilike } from "drizzle-orm";
 import { auth } from "../../auth";
+import { redirect } from "next/navigation";
 
 const getRooms = async (search: string | undefined) => {
   const where = search ? ilike(room.tags, `%${search}%`) : undefined;
@@ -20,7 +21,7 @@ const getRoom = async (roomId: string) => {
 const getMyRooms = async () => {
   const session = await auth();
   if (!session?.user) {
-    throw new Error("User not authenticated!");
+    return redirect("/login");
   }
   return await db.query.room.findMany({
     where: eq(room.userId, session.user.id),
