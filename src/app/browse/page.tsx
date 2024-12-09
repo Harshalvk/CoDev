@@ -2,6 +2,7 @@ import RoomCard from "@/components/RoomCard";
 import { SearchBar } from "@/components/SearchBar";
 import { Button } from "@/components/ui/button";
 import { getRooms } from "@/data-access/rooms";
+import { unstable_noStore } from "next/cache";
 import Link from "next/link";
 import React from "react";
 
@@ -13,6 +14,7 @@ type Props = {
 
 const page = async ({ searchParams }: Props) => {
   const { search } = await searchParams;
+  unstable_noStore();
   const rooms = await getRooms(search);
 
   return (

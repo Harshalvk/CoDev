@@ -2,6 +2,7 @@ import Tags from "@/components/Tags";
 import { CoDevVideo } from "@/components/VideoPlayer";
 import { getRoom } from "@/data-access/rooms";
 import { Github } from "lucide-react";
+import { unstable_noStore } from "next/cache";
 import Link from "next/link";
 import React from "react";
 
@@ -11,6 +12,7 @@ type Props = {
 
 const RoomPage = async ({ params }: Props) => {
   const { roomId } = await params;
+  unstable_noStore();
   const room = await getRoom(roomId);
 
   if (!room) {

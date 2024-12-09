@@ -1,11 +1,9 @@
 import { db } from "@/db/index";
 import { room } from "@/db/schema";
 import { eq, ilike } from "drizzle-orm";
-import { unstable_noStore } from "next/cache";
 import { auth } from "../../auth";
 
 const getRooms = async (search: string | undefined) => {
-  unstable_noStore();
   const where = search ? ilike(room.tags, `%${search}%`) : undefined;
   const rooms = await db.query.room.findMany({
     where,
@@ -14,14 +12,12 @@ const getRooms = async (search: string | undefined) => {
 };
 
 const getRoom = async (roomId: string) => {
-  unstable_noStore();
   return await db.query.room.findFirst({
     where: eq(room.id, roomId),
   });
 };
 
 const getMyRooms = async () => {
-  unstable_noStore();
   const session = await auth();
   if (!session?.user) {
     return [];

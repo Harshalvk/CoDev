@@ -2,7 +2,7 @@
 
 import { deleteRoom, getRoom } from "@/data-access/rooms";
 import { auth } from "../../../auth";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, unstable_noStore } from "next/cache";
 
 export const deleteUserRoomAction = async (roomId: string) => {
   const session = await auth();
@@ -11,6 +11,7 @@ export const deleteUserRoomAction = async (roomId: string) => {
     throw new Error("User not authenticated");
   }
 
+  unstable_noStore();
   const room = await getRoom(roomId);
 
   if (room?.userId !== session.user.id) {

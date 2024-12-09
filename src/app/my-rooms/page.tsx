@@ -4,8 +4,10 @@ import Link from "next/link";
 import RoomCard from "@/components/RoomCard";
 import { SearchBar } from "@/components/SearchBar";
 import { getMyRooms } from "@/data-access/rooms";
+import { unstable_noStore } from "next/cache";
 
 export default async function MyRoom() {
+  unstable_noStore();
   const rooms = await getMyRooms();
 
   return (

@@ -1,11 +1,8 @@
 import Header from "@/components/Header";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import RoomCard from "@/components/RoomCard";
 import { getRooms } from "@/data-access/rooms";
 import { auth } from "../../auth";
-import { redirect } from "next/navigation";
-import { SearchBar } from "@/components/SearchBar";
+import { unstable_noStore } from "next/cache";
 
 type Props = {
   searchParams: {
@@ -15,6 +12,7 @@ type Props = {
 
 export default async function Home({ searchParams }: Props) {
   const { search } = await searchParams;
+  unstable_noStore();
   const rooms = await getRooms(search);
   const session = await auth();
 
