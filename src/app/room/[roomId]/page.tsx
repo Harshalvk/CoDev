@@ -1,4 +1,4 @@
-import Tags from "@/components/Tags"
+import Tags from "@/components/Tags";
 import { CoDevVideo } from "@/components/VideoPlayer";
 import { getRoom } from "@/data-access/rooms";
 import { Github } from "lucide-react";
@@ -10,7 +10,7 @@ type Props = {
 };
 
 const RoomPage = async ({ params }: Props) => {
-  const roomId = params.roomId;
+  const { roomId } = await params;
   const room = await getRoom(roomId);
 
   if (!room) {
