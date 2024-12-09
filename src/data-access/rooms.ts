@@ -20,7 +20,7 @@ const getRoom = async (roomId: string) => {
 const getMyRooms = async () => {
   const session = await auth();
   if (!session?.user) {
-    return [];
+    throw new Error("User not authenticated!");
   }
   return await db.query.room.findMany({
     where: eq(room.userId, session.user.id),
