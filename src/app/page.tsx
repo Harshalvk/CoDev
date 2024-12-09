@@ -18,36 +18,24 @@ export default async function Home({ searchParams }: Props) {
   const rooms = await getRooms(search);
   const session = await auth();
 
-  if (!session?.user) {
-    return redirect("/login");
-  } else {
-    return (
-      <>
-        <Header />
-        <main className="min-h-screen py-24">
-          <div className="flex justify-between items-center w-full">
-            <h1 className="text-4xl font-semibold tracking-tighter">
-              Find Dev Rooms
-            </h1>
-            <div className="flex gap-2">
-              <Button asChild>
-                <Link href={"/my-rooms"}>My Rooms</Link>
-              </Button>
-              <Button asChild>
-                <Link href={"/create-room"}>Create Room</Link>
-              </Button>
-            </div>
+  return (
+    <>
+      <Header />
+      <main className="mt-20">
+        <div className="w-full flex flex-col items-center gap-3">
+          <h1 className="font-semibold text-7xl tracking-tighter bg-gradient-to-t from-neutral-300 to-white text-transparent bg-clip-text p-2">
+            Code Live, Build Together
+          </h1>
+          <p className="text-center max-w-[520px] text-neutral-500">
+            Experience the power of real-time collaboration. Join rooms to
+            discuss, develop, and deliver your projects as a team.
+          </p>
+          <div className="space-x-2">
+            <Button variant={"ghost"}>Browse Rooms</Button>
+            <Button>Create Room</Button>
           </div>
-          <div className="my-4">
-            <SearchBar />
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center gap-2 mt-5">
-            {rooms.map((room) => (
-              <RoomCard room={room} key={room.id} />
-            ))}
-          </div>
-        </main>
-      </>
-    );
-  }
+        </div>
+      </main>
+    </>
+  );
 }
