@@ -1,6 +1,7 @@
 import { getRoom } from "@/data-access/rooms";
 import React from "react";
 import { EditRoomForm } from "./edit-room-form";
+import { unstable_noStore } from "next/cache";
 
 type Props = {
   params: { roomId: string };
@@ -8,10 +9,11 @@ type Props = {
 
 const EditRoom = async ({ params }: Props) => {
   const { roomId } = await params;
+  unstable_noStore()
   let room = await getRoom(roomId);
 
   if (!room) {
-    return "Room not found!";
+    return <div>"Room not found!"</div>;
   }
 
   return (
