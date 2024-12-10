@@ -48,6 +48,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           name: token.name,
           email: token.email,
           image: token.picture,
+          emailVerified: token.emailVerified as Date,
         };
       } else {
         throw new Error("Invalid token data");
