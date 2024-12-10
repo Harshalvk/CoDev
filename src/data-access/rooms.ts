@@ -1,5 +1,6 @@
 import { db } from "@/db/index";
 import { room } from "@/db/schema";
+import type { Room } from "@/db/schema";
 import { eq, ilike } from "drizzle-orm";
 import { auth } from "../../auth";
 import { redirect } from "next/navigation";
@@ -32,4 +33,13 @@ const deleteRoom = async (roomId: string) => {
   await db.delete(room).where(eq(room.id, roomId));
 };
 
-export { getRooms, getRoom, getMyRooms, deleteRoom };
+const updateRoomData = async (roomData: Omit<Room, "userId">) => {
+  const updated = await db
+    .update(room)
+    .set(roomData)
+    .where(eq(room.id, roomData.id))
+    .returning();
+  return updated[0];
+};
+
+export { getRooms, getRoom, getMyRooms, deleteRoom, updateRoomData };

@@ -12,7 +12,7 @@ import {
 import type { Room } from "@/db/schema";
 import { Button } from "./ui/button";
 import Link from "next/link";
-import { Github, X } from "lucide-react";
+import { Github, PenIcon, X } from "lucide-react";
 import Tags from "@/components/Tags";
 import { DeleteRoomAlertDialog } from "./DeleteRoomAlertDialog";
 
@@ -61,10 +61,18 @@ const RoomCard = ({ room, cardType = "default" }: Props) => {
           )}
         </div>
       </CardContent>
-      <CardFooter>
-        <Button asChild className="w-full">
+      <CardFooter className="flex gap-2">
+        <Button asChild className="flex-1">
           <Link href={`/room/${room.id}`}>Join Room</Link>
         </Button>
+        {cardType === "roomCard" && (
+          <Button className="flex-1" asChild>
+            <Link href={`/edit-room/${room.id}`}>
+              <PenIcon />
+              Edit Room
+            </Link>
+          </Button>
+        )}
       </CardFooter>
     </Card>
   );
