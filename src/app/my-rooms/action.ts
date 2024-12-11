@@ -20,5 +20,5 @@ export const deleteUserRoomAction = async (roomId: string) => {
 
   await deleteRoom(roomId);
 
-  revalidatePath("/my-rooms");
+  revalidatePath("ha");
 };
