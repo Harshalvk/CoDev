@@ -39,7 +39,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <NextTopLoader color="#2299DD" />
-          <Toaster />
+          <Toaster theme="system" />
           <SessionProvider>{children}</SessionProvider>
         </ThemeProvider>
       </body>
