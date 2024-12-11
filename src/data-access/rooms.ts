@@ -42,4 +42,22 @@ const updateRoomData = async (roomData: Omit<Room, "userId">) => {
   return updated[0];
 };
 
-export { getRooms, getRoom, getMyRooms, deleteRoom, updateRoomData };
+const createRoom = async (
+  roomData: Omit<Room, "id" | "userId">,
+  userId: string
+) => {
+  const inserted = await db
+    .insert(room)
+    .values({ ...roomData, userId })
+    .returning();
+  return inserted[0];
+};
+
+export {
+  getRooms,
+  getRoom,
+  getMyRooms,
+  deleteRoom,
+  updateRoomData,
+  createRoom,
+};
