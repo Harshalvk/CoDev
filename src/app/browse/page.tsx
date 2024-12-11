@@ -39,6 +39,13 @@ const page = async ({ searchParams }: Props) => {
         {rooms.map((room) => (
           <RoomCard room={room} key={room.id} />
         ))}
+        {rooms.length === 0 && (
+          <div className="w-full mt-24 flex flex-col items-center justify-center">
+            <h1 className="text-4xl font-semibold tracking-tighter bg-gradient-to-t from-neutral-400 to-white text-transparent bg-clip-text">
+              No rooms yet.
+            </h1>
+          </div>
+        )}
       </div>
     </main>
   );
