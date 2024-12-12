@@ -1,15 +1,20 @@
+"use client";
+
 import React from "react";
 import { ModeToggle } from "./ModeToggle";
-import { auth } from "../../auth";
 import UserAccountNav from "./UserAccountNav";
 import SignInButton from "./SignIn";
 import Link from "next/link";
+import { motion } from "motion/react";
+import User from "./User";
 
-const Header = async () => {
-  const session = await auth();
-
+const Header = () => {
   return (
-    <div className="mt-4 flex items-center justify-between py-4 px-6 border rounded-full mx-auto">
+    <motion.div
+      initial={{ y: -100 }}
+      animate={{ y: 10 }}
+      className="z-20 mt-4 flex items-center justify-between py-4 px-6 border rounded-full mx-auto sticky top-4 dark:bg-zinc-950/80 backdrop-blur-md"
+    >
       <div>
         <Link href={"/"} className="text-2xl font-bold tracking-tighter">
           CoDev
@@ -17,15 +22,8 @@ const Header = async () => {
       </div>
       <div className="flex gap-2 items-center">
         <ModeToggle />
-        <div className="flex items-center">
-          {session?.user ? (
-            <UserAccountNav user={session.user} />
-          ) : (
-            <SignInButton text="SignIn" />
-          )}
-        </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
